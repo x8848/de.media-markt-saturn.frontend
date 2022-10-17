@@ -5,6 +5,8 @@ import { DATE_TIME_FORMAT } from "../../utils/constants";
 import { OrderProps } from "../../utils/types";
 
 const Order: FC<OrderProps> = ({ order }) => {
+  if (!order) return null;
+
   const { _id, status, customer, employee, items, history } = order;
 
   const orderItems = items.map((item) => item.name).join(", ");

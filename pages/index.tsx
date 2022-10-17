@@ -38,25 +38,29 @@ const Index = () => {
     }
   };
 
-  if (loading && !data) return "Loading ...";
+  if (loading && !data) return "LOADING ...";
 
   if (error) return error.message;
 
   if (updateError) return updateError.message;
 
   return (
-    <Content className={style.grid}>
-      {orders.map((order, index) => (
-        <div className={style.container} key={index}>
-          <Order order={order} key={index} />
-          {(order.status === GraphQLOrderStatus.Open ||
-            order.status === GraphQLOrderStatus.InProgress) && (
-            <button onClick={() => update(order)} disabled={loading}>
-              {updateLoading ? "UPDATING" : "UPDATE"}
-            </button>
-          )}
-        </div>
-      ))}
+    <Content>
+      <h1>ORDERS</h1>
+      {orders.length === 0 && "NO ORDERS"}
+      <div className={style.grid}>
+        {orders.map((order, index) => (
+          <div className={style.container} key={index}>
+            <Order order={order} key={index} />
+            {(order.status === GraphQLOrderStatus.Open ||
+              order.status === GraphQLOrderStatus.InProgress) && (
+              <button onClick={() => update(order)} disabled={loading}>
+                {updateLoading ? "UPDATING ..." : "UPDATE"}
+              </button>
+            )}
+          </div>
+        ))}
+      </div>
     </Content>
   );
 };

@@ -1,6 +1,6 @@
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import type { AppProps } from "next/app";
-import "../styles/globals.css";
+import "../styles/globals.scss";
 import { GRAPHQL_API_URL } from "../utils/constants";
 
 export const client = new ApolloClient({
